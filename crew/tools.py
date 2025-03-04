@@ -1,11 +1,21 @@
-## https://serper.dev/
 import os
 from dotenv import load_dotenv
 from crewai_tools import SerperDevTool
 
-# os.environ['SERPER_API_KEY'] = os.getenv('SERPER_API_KEY')
+# ✅ Load environment variables from .env
+load_dotenv()
 
-# inititlaize the tool for internet searching capabilities
+# ✅ Get the SERPER_API_KEY safely
+serper_api_key = os.getenv('SERPER_API_KEY')
+
+# ✅ Check if API key is available
+if not serper_api_key:
+    raise ValueError("⚠️ SERPER_API_KEY is missing. Please check your .env file.")
+
+# ✅ Set the environment variable explicitly
+os.environ['SERPER_API_KEY'] = serper_api_key
+
+# ✅ Initialize the tool for internet searching capabilities
 tool = SerperDevTool()
 
-
+print("✅ SerperDevTool initialized successfully!")

@@ -5,9 +5,15 @@ from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 load_dotenv()
+import os
+
+os.environ["LITELLM_MODEL"] = "gemini-2.0-flash"
+os.environ["LITELLM_API_KEY"] = os.getenv("GOOGLE_API_KEY")
+os.environ["LITELLM_PROVIDER"] = "google"
+
 
 # call gemini model
-llm = ChatGoogleGenerativeAI(model='gemini-1.5-flash',
+llm = ChatGoogleGenerativeAI(model='gemini-2.0-flash',
                             verbose=True,
                             temperature=0.5,
                             goggle_api_key=os.getenv('GOOGLE_API_KEY'))               
